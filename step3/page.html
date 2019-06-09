@@ -6,19 +6,38 @@
 <title>TodoList</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
-<link href="" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+	#app{
+		margin:60px auto 0 auto;
+		width:600px;
+	}
+	.btn,.status{
+		margin-left:30px;
+	}
+	.title{
+		width:220px;
+		display: inline-block;
+	}
+	.todos li{
+		height: 36px;
+		line-height: 36px;
+		font-size:16px;
+	}
+</style>
 </head>
 <body>
 	<div id="app">
 		<div class="newTask">
-			<input type="text" v-model="newTodo" @keypress.enter="addTodo"/>
+			<input class="form-control" type="text" v-model="newTodo" @keypress.enter="addTodo"/>
 		</div>
 		<ol class="todos">
 			<li v-for="todo in todoList">
-				<input type="checkbox" v-model="todo.done"/>{{todo.title}}
-				<span v-if="todo.done">已完成</span>
-				<span v-else>未完成</span>
-				<button @click="removeTodo(todo)">X</button>
+				<input type="checkbox" v-model="todo.done"/><span class="title">{{todo.title}}</span>
+				<span style="width:100px;margin-left:20px;">{{todo.time}}</span>
+				<span class="status" v-if="todo.done">已完成</span>
+				<span class="status" v-else>未完成</span>
+				<button class="btn btn-primary btn-xs"  @click="removeTodo(todo)">X</button>
 			</li>
 		</ol>
 	</div>
